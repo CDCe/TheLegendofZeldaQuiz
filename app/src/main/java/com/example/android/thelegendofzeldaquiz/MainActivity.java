@@ -4,6 +4,7 @@ package com.example.android.thelegendofzeldaquiz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,9 +12,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.time.Year;
-
 public class MainActivity extends AppCompatActivity {
+
 
     int score = 0;
 
@@ -23,8 +23,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void endQuest(View view) {
 
-    public void endQuest (View view) {
+
+        CheckBox zeldaCheckBox = (CheckBox) findViewById(R.id.answer2_question1);
+        boolean zeldaCheckBoxChecked = zeldaCheckBox.isChecked();
+
+
+        CheckBox linkCheckBox = (CheckBox) findViewById(R.id.answer3_question1);
+        boolean linkCheckBoxChecked = linkCheckBox.isChecked();
+
+        if (zeldaCheckBoxChecked) {
+
+            score += 10;
+
+        } else if (linkCheckBoxChecked) {
+
+            score += 10;
+        }
 
         displayScore(score);
 
@@ -33,33 +49,40 @@ public class MainActivity extends AppCompatActivity {
 
         if (score == 100) {
 
-            for (int i=0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
 
-            {Toast toast = Toast.makeText(this, "Congratulations " + characterName + ", you pass the trial of the sages! Now the treasure of Nayru is yours!",Toast.LENGTH_LONG);
-                toast.show();  }
+            {
+                Toast toast = Toast.makeText(this, "Congratulations " + characterName + ", you pass the trial of the sages! Now the treasure of Nayru is yours!", Toast.LENGTH_LONG);
+                toast.show();
             }
+        } else if (score >= 70) {
 
-       else if  (score >= 70) {
+            for (int i = 0; i < 2; i++)
 
-            for (int i=0; i < 2; i++)
-
-            {Toast toast = Toast.makeText(this, "The sages still have a trial for you " + characterName + ", but you can have part of the treasure! Take the quest again.",Toast.LENGTH_LONG);
-                toast.show();  }
+            {
+                Toast toast = Toast.makeText(this, "The sages still have a trial for you " + characterName + ", but you can have part of the treasure! Take the quest again.", Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
 
         if (score < 70) {
 
-            for (int i=0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
 
-            {Toast toast = Toast.makeText(this, characterName + " You fail the trial of the sages! Take the quest again.",Toast.LENGTH_LONG);
-                toast.show();  }
+            {
+                Toast toast = Toast.makeText(this, characterName + " You fail the trial of the sages! Take the quest again.", Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
 
-        }
+    }
 
-    public void takeAgainTheQuest (View view) {
+    public void takeAgainTheQuest(View view) {
 
-        RadioGroup radiogroup1 = (RadioGroup) findViewById(R.id.group_question1);
+
+        CheckBox zeldacheckbox = (CheckBox) findViewById(R.id.answer2_question1);
+
+        CheckBox linkcheckbox = (CheckBox) findViewById(R.id.answer3_question1);
 
         RadioGroup radiogroup2 = (RadioGroup) findViewById(R.id.group_question2);
 
@@ -79,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
         RadioGroup radiogroup10 = (RadioGroup) findViewById(R.id.group_question10);
 
-        radiogroup1.clearCheck();
+
+        zeldacheckbox.setChecked(false);
+
+        linkcheckbox.setChecked(false);
 
         radiogroup2.clearCheck();
 
@@ -103,32 +129,19 @@ public class MainActivity extends AppCompatActivity {
 
         displayScore(score);
 
-       ScrollView mainScrollView = (ScrollView)findViewById(R.id.questScrollView);
+        ScrollView mainScrollView = (ScrollView) findViewById(R.id.questScrollView);
 
         mainScrollView.fullScroll(ScrollView.FOCUS_UP);
 
     }
 
     public void displayScore(int score) {
-        TextView scoreTextView = (TextView) findViewById (R.id.scoredisplay);
+        TextView scoreTextView = (TextView) findViewById(R.id.scoredisplay);
         scoreTextView.setText("x" + score);
     }
 
 
-    public void answerOne (View view) {
-
-        RadioGroup radiogroup = (RadioGroup) findViewById(R.id.group_question1);
-
-        RadioButton Link = (RadioButton) findViewById(R.id.answer3_question1);
-
-        int answer1 = radiogroup.getCheckedRadioButtonId();
-
-        RadioButton selectAnswer1 = (RadioButton) findViewById(answer1);
-
-        if (Link.isChecked()) score += 10;
-    }
-
-    public void answerTwo (View view) {
+    public void answerTwo(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question2);
 
@@ -141,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         if (GoldenGoddesses.isChecked()) score += 10;
     }
 
-    public void answerThree (View view) {
+    public void answerThree(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question3);
 
@@ -154,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         if (ChuChu.isChecked()) score += 10;
     }
 
-    public void answerFour (View view) {
+    public void answerFour(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question4);
 
@@ -166,7 +179,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (BunnyHood.isChecked()) score += 10;
     }
-    public void answerFive (View view) {
+
+    public void answerFive(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question5);
 
@@ -179,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         if (Cuccos.isChecked()) score += 10;
     }
 
-    public void answerSix (View view) {
+    public void answerSix(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question6);
 
@@ -191,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (Goron.isChecked()) score += 10;
     }
-    public void answerSeven (View view) {
+
+    public void answerSeven(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question7);
 
@@ -203,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (Beedle.isChecked()) score += 10;
     }
-    public void answerEight (View view) {
+
+    public void answerEight(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question8);
 
@@ -215,7 +231,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (HyruleWarriors.isChecked()) score += 10;
     }
-    public void answerNine (View view) {
+
+    public void answerNine(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question9);
 
@@ -227,7 +244,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (Year.isChecked()) score += 10;
     }
-    public void answerTen (View view) {
+
+    public void answerTen(View view) {
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.group_question10);
 
