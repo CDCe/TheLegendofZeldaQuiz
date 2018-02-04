@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#5E9151</item>
+        <item name="colorPrimaryDark">#4A6442</item>
+        <item name="colorAccent">#5E9151</item>
+        <item name="colorButtonNormal">#5E9151</item>
+        <item name="android:textColorHint">#F5F5F5</item>
+        <item name="android:textColor">#212121</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>
